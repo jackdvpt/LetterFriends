@@ -19,7 +19,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-    function startsWith(array, key) {
+    function friendFinder(array, key) {
       const matcher = new RegExp(`^.*${key}.*$`, "g");
       return array.filter((word) => word.match(matcher));
     }
@@ -43,14 +43,19 @@ return output;
     $(document).ready(function () {
       $("#myBtn").click(function () {
           
-        var str = $("#myInput").val();
+        var str = $("#myInput").val().toLowerCase();
         if (str.length == 2){
             var colours = ['#FF8A65','#FDD835','#64FFDA','#40C4FF','#BA68C8','#64DD17'];
             var rand_colour = colors[Math.floor(Math.random() * colours.length)];
             var words_dictionary = new Array();
             $.get("https://raw.githubusercontent.com/dwyl/english-words/master/words.txt",function (data) {
             words_dictionary = data.split("\n");
-                var words_found = startsWith(words_dictionary, str);
+            
+            var words_dict_lower = words_dictionary.map(v=> v.toLowerCase());
+            
+            console.log(words_dictionary)
+              console.log(words_dict_lower)
+                var words_found = friendFinder(words_dict_lower, str);
                 $("#num_words").text(
                 "There are " + words_found.length + " words found with the two friends " + str[0] + " & " + str[1]);
             $('#myItems').empty()
