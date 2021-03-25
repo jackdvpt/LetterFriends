@@ -51,7 +51,6 @@ return output;
             $.get("https://raw.githubusercontent.com/dwyl/english-words/master/words.txt",function (data) {
             words_dictionary = data.split("\n");
                 var words_found = startsWith(words_dictionary, str);
-                console.log(words_found);
                 $("#num_words").text(
                 "There are " + words_found.length + " words found with the two friends " + str[0] + " & " + str[1]);
             $('#myItems').empty()
